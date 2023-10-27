@@ -43,23 +43,33 @@ def parens_match_iterative(mylist):
     False
     """
     ### TODO
+    stack = []
+
+    for char in mylist:
+        if char == '(':
+            stack.append(char)
+        elif char == ')':
+            if not stack:
+                return False  # Unmatched closing parenthesis
+            stack.pop()
+
+    return len(stack) == 0
     pass
 
 
 def parens_update(current_output, next_input):
-    """
-    This function will be passed to the `iterate` function to 
-    solve the balanced parenthesis problem.
+    open_paren_count = current_output
+    char = next_input
     
-    Like all functions used by iterate, it takes in:
-    current_output....the cumulative output thus far (e.g., the running sum when doing addition)
-    next_input........the next value in the input
+    if char == '(':
+        open_paren_count += 1
+    elif char == ')':
+        if open_paren_count > 0:
+            open_paren_count -= 1
+        else:
+            open_paren_count += 1
     
-    Returns:
-      the updated value of `current_output`
-    """
-    ###TODO
-    pass
+    return open_paren_count
 
 
 def test_parens_match_iterative():
@@ -88,7 +98,7 @@ def parens_match_scan(mylist):
     
     """
     ###TODO
-    pass
+    
 
 def scan(f, id_, a):
     """
@@ -160,8 +170,23 @@ def parens_match_dc_helper(mylist):
       L is the number of unmatched left parentheses. This output is used by 
       parens_match_dc to return the final True or False value
     """
+    
     ###TODO
-    pass
+    unmatched_left = 0
+    unmatched_right = 0
+    
+    for char in mylist:
+        if char == '(':
+            unmatched_left += 1
+        elif char == ')':
+            if unmatched_left > 0:
+                unmatched_left -= 1
+            else:
+                unmatched_right += 1
+    
+    return (unmatched_right, unmatched_left)
+
+
     
 
 def test_parens_match_dc():
