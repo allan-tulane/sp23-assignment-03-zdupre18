@@ -12,7 +12,7 @@ Place all written answers from `assignment-03.md` here for easier grading.
 
 
 - **b.**
-
+O(n) work and o(1) span 
 
 
 
