@@ -25,3 +25,5 @@ since the fucntion maps the characters in mylist to 1 for open parentheses '(', 
 
 
 - **f.**
+
+both are O(log n)
