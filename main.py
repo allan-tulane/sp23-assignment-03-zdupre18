@@ -43,18 +43,17 @@ def parens_match_iterative(mylist):
     False
     """
     ### TODO
-    stack = []
-
-    for char in mylist:
-        if char == '(':
-            stack.append(char)
-        elif char == ')':
-            if not stack:
-                return False  # Unmatched closing parenthesis
-            stack.pop()
-
-    return len(stack) == 0
-    pass
+    if current_output == -math.inf:  # in an invalid state; carry it forward
+        return current_output
+    if next_input == '(':            # new open parens 
+        return current_output + 1
+    elif next_input == ')':          # new close parens
+        if current_output <= 0:      # close before an open -> invalid
+            return -math.inf
+        else:                        # valid
+            return current_output - 1
+    else:                            # ignore non-parens input
+        return current_output
 
 
 def parens_update(current_output, next_input):
